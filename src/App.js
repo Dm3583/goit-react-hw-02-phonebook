@@ -1,37 +1,62 @@
 import React, { Component } from "react";
+import { v4 as uuid } from "uuid";
 
 class App extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      contacts: ["1", "2", "3"],
+      contacts: [],
       name: "",
+      number: "",
     };
   }
 
-  inputFieldHandler = (evt) => {
-    console.log(evt.target.value);
-    return this.setState({
-      name: evt.target.value,
+  inputFieldHandler = ({ target }) => {
+    const { name, value } = target;
+    this.setState({
+      [name]: value,
     });
   };
 
   btnOnclickHandler = (evt) => {
     evt.preventDefault();
-    console.log(this.state.name);
-    return this.setState(({ contacts }) => {
-      return { contacts: [...contacts, this.state.name] };
+    const id = uuid();
+
+    this.setState(({ contacts, name, number }) => {
+      console.log(id);
+      return { contacts: [...contacts, { id, name, number }] };
     });
+    this.reset();
+  };
+
+  reset = () => {
+    this.setState({ name: "", number: "" });
   };
 
   render() {
+    const { name, number, contacts } = this.state;
     return (
       <div>
         <h1>Phonebook</h1>
         <form>
           <label>
-            <input type="text" name="name" onChange={this.inputFieldHandler} />
+            Name
+            <input
+              type="text"
+              name="name"
+              value={name}
+              onChange={this.inputFieldHandler}
+            />
+          </label>
+          <label>
+            Number
+            <input
+              type="tel"
+              name="number"
+              value={number}
+              onChange={this.inputFieldHandler}
+            />
           </label>
           <button type="button" onClick={this.btnOnclickHandler}>
             Add contact
@@ -39,8 +64,12 @@ class App extends Component {
         </form>
         <h2>Contacts</h2>
         <ul>
-          {this.state.contacts.map((contact) => {
-            return <li key={contact}>{contact}</li>;
+          {contacts.map(({ id, name, number }) => {
+            return (
+              <li key={id}>
+                {name}: {number}
+              </li>
+            );
           })}
         </ul>
       </div>
