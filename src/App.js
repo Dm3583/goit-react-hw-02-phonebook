@@ -5,7 +5,7 @@ class App extends Component {
     super(props);
 
     this.state = {
-      contacts: [],
+      contacts: ["1", "2", "3"],
       name: "",
     };
   }
@@ -20,6 +20,9 @@ class App extends Component {
   btnOnclickHandler = (evt) => {
     evt.preventDefault();
     console.log(this.state.name);
+    return this.setState(({ contacts }) => {
+      return { contacts: [...contacts, this.state.name] };
+    });
   };
 
   render() {
@@ -36,7 +39,9 @@ class App extends Component {
         </form>
         <h2>Contacts</h2>
         <ul>
-          <li>Contact 1</li>
+          {this.state.contacts.map((contact) => {
+            return <li key={contact}>{contact}</li>;
+          })}
         </ul>
       </div>
     );
