@@ -26,9 +26,15 @@ class App extends Component {
   };
 
   addContact = (contact) => {
-    this.setState(({ contacts }) => {
-      return { contacts: [...contacts, contact] };
-    });
+    const namesList = this.state.contacts.map((contact) => contact.name);
+
+    if (!namesList.find((name) => name === contact.name)) {
+      this.setState(({ contacts }) => {
+        return { contacts: [...contacts, contact] };
+      });
+    } else {
+      alert(`${contact.name} is already in contacts`);
+    }
   };
 
   deleteContact = (contactId) => {
@@ -39,6 +45,7 @@ class App extends Component {
 
   getVisibleContacts = () => {
     const { filter, contacts } = this.state;
+
     const normalizedFilter = filter.toLowerCase();
     return contacts.filter(({ name }) =>
       name.toLowerCase().includes(normalizedFilter)

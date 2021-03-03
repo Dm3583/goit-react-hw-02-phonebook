@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { v4 as uuid } from "uuid";
+import PropTypes from "prop-types";
 
 const INITIAL_STATE = {
   name: "",
@@ -7,6 +8,10 @@ const INITIAL_STATE = {
 };
 
 class ContactForm extends Component {
+  static propTypes = {
+    addContact: PropTypes.func.isRequired,
+  };
+
   constructor(props) {
     super(props);
     this.state = {
@@ -16,6 +21,7 @@ class ContactForm extends Component {
 
   inputFieldHandler = ({ target }) => {
     const { name, value } = target;
+
     this.setState({
       [name]: value,
     });
