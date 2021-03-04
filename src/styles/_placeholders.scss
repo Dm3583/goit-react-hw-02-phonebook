@@ -4,6 +4,7 @@
   outline: none;
   padding: 15px;
   background-color: $primary-btn-color;
+  border-radius: 4px;
 }
 
 %input-field {
@@ -11,4 +12,5 @@
 
   height: $line-height * 2;
   margin-bottom: 15px;
+  border-radius: 4px;
 }
