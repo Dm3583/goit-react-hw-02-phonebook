@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { v4 as uuid } from "uuid";
 import PropTypes from "prop-types";
+import "./ContactForm.scss";
 
 const INITIAL_STATE = {
   name: "",
@@ -45,7 +46,7 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form onSubmit={this.submitHandler}>
+      <form className="test" onSubmit={this.submitHandler}>
         <label>
           Name
           <input
