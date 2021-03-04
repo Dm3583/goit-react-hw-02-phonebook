@@ -32,6 +32,11 @@ class ContactForm extends Component {
     evt.preventDefault();
 
     const { name, number } = this.state;
+
+    if (!name || !number) {
+      return;
+    }
+
     const newContact = { id: uuid(), name, number };
 
     this.props.addContact(newContact);
@@ -46,10 +51,11 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form className="test" onSubmit={this.submitHandler}>
+      <form className="ContactForm" onSubmit={this.submitHandler}>
         <label>
-          Name
+          <p className="ContactForm__label">Name</p>
           <input
+            className="ContactForm__text-input"
             type="text"
             name="name"
             value={name}
@@ -57,15 +63,18 @@ class ContactForm extends Component {
           />
         </label>
         <label>
-          Number
+          <p className="ContactForm__label">Number</p>
           <input
+            className="ContactForm__text-input"
             type="tel"
             name="number"
             value={number}
             onChange={this.inputFieldHandler}
           />
         </label>
-        <button type="submit">Add contact</button>
+        <button className="ContactForm__button" type="submit">
+          Add contact
+        </button>
       </form>
     );
   }

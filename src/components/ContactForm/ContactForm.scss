@@ -1,5 +1,37 @@
 @import "styles/shared.scss";
 
-.test {
-  color: red;
+.ContactForm {
+  display: flex;
+  flex-direction: column;
+  color: $dark;
+  width: 500px;
+  padding: 10px;
+  border: 1px solid $dark;
+}
+
+.ContactForm__label {
+  font-size: 18px;
+}
+
+.ContactForm__text-input {
+  @extend %input-field;
+
+  &:active,
+  &:focus {
+    outline: transparent;
+    border: 2px solid transparent;
+    box-shadow: 2px 2px 6px rgb(134, 133, 133);
+  }
+}
+
+.ContactForm__button {
+  @extend %button;
+  width: 170px;
+
+  transition: all $timing-function 0.25s;
+  &:hover,
+  &:focus {
+    background-color: $secondary-btn-color;
+    box-shadow: 3px 3px 3px $primary-btn-color;
+  }
 }

@@ -1,8 +1,9 @@
-@import "/styles/shared";
+@import "styles/shared";
 
 body {
   margin: 0;
   line-height: 1.5;
+  box-sizing: border-box;
 }
 
 h1,

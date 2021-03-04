@@ -1,12 +1,17 @@
 import React from "react";
 import PropTypes from "prop-types";
+import "./ListItem.scss";
 
 const ListItem = ({ contact, deleteContact }) => {
   const { id, name, number } = contact;
   return (
-    <li>
+    <li className="ListItem">
       {name}: {number}
-      <button type="button" onClick={() => deleteContact(id)}>
+      <button
+        className="ListItem__button"
+        type="button"
+        onClick={() => deleteContact(id)}
+      >
         Delete
       </button>
     </li>
