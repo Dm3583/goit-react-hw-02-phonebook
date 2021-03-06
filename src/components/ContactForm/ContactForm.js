@@ -13,14 +13,11 @@ class ContactForm extends Component {
     addContact: PropTypes.func.isRequired,
   };
 
-  constructor(props) {
-    super(props);
-    this.state = {
-      ...INITIAL_STATE,
-    };
-  }
+  state = {
+    ...INITIAL_STATE,
+  };
 
-  inputFieldHandler = ({ target }) => {
+  handlerInputField = ({ target }) => {
     const { name, value } = target;
 
     this.setState({
@@ -28,7 +25,7 @@ class ContactForm extends Component {
     });
   };
 
-  submitHandler = (evt) => {
+  handlerSubmit = (evt) => {
     evt.preventDefault();
 
     const { name, number } = this.state;
@@ -51,7 +48,7 @@ class ContactForm extends Component {
   render() {
     const { name, number } = this.state;
     return (
-      <form className="ContactForm" onSubmit={this.submitHandler}>
+      <form className="ContactForm" onSubmit={this.handlerSubmit}>
         <label>
           <p className="ContactForm__label">Name</p>
           <input
@@ -59,7 +56,7 @@ class ContactForm extends Component {
             type="text"
             name="name"
             value={name}
-            onChange={this.inputFieldHandler}
+            onChange={this.handlerInputField}
           />
         </label>
         <label>
@@ -69,7 +66,7 @@ class ContactForm extends Component {
             type="tel"
             name="number"
             value={number}
-            onChange={this.inputFieldHandler}
+            onChange={this.handlerInputField}
           />
         </label>
         <button className="ContactForm__button" type="submit">
